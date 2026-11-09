@@ -1,0 +1,208 @@
+/* ===== Modal de Regalos (módulo reutilizable) =====
+   Archivos: regalo-modal.css + regalo-modal.js + regalo-fondo.jpg */
+.rg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(24, 31, 42, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+.rg-overlay.open { opacity: 1; visibility: visible; }
+
+.rg-sheet {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    border-radius: 24px;
+    background: #F8F6F2;
+    border: 1px solid rgba(119, 138, 169, .55);
+    box-shadow: 0 30px 60px -20px rgba(24, 31, 42, .55);
+    transform: translateY(24px) scale(.97);
+    transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: #212B3A;
+    text-align: center;
+}
+.rg-overlay.open .rg-sheet { transform: none; }
+
+.rg-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(119, 138, 169, .6);
+    background: rgba(248, 246, 242, .9);
+    color: #303C4F;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+.rg-back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(119, 138, 169, .6);
+    background: rgba(248, 246, 242, .9);
+    color: #303C4F;
+    font: 600 14px 'Cormorant Garamond', Georgia, serif;
+    cursor: pointer;
+}
+
+/* Paso 1: elegir opción */
+.rg-choose { padding: 40px 22px 26px; }
+.rg-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.6rem;
+    line-height: 1.1;
+    color: #303C4F;
+    margin-bottom: 4px;
+}
+.rg-sub { font-size: 1.05rem; color: rgba(33, 43, 58, .75); margin-bottom: 22px; }
+
+.rg-option {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(119, 138, 169, .5);
+    background: #FFFFFF;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.rg-option:hover { transform: translateY(-2px); box-shadow: 0 8px 22px -10px rgba(48, 60, 79, .45); border-color: #778AA9; }
+.rg-option-icon {
+    flex: 0 0 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #303C4F 0%, #8596B2 100%);
+    box-shadow: inset 0 0 0 1px rgba(119, 138, 169, .7);
+    color: #FFFFFF;
+}
+.rg-option-text strong { display: block; font-family: 'Bodoni Moda', Georgia, serif; font-size: 1.1rem; font-weight: 600; color: #303C4F; }
+.rg-option-text span { font-size: .98rem; color: rgba(33, 43, 58, .7); }
+.rg-option-arrow { margin-left: auto; color: #778AA9; font-size: 1.3rem; }
+
+/* Paso 2: datos bancarios con fondo de papel */
+.rg-bank {
+    position: relative;
+    padding: 58px 18px 22px;
+    background: #EDE9E3 url('regalo-fondo.jpg') center / cover no-repeat;
+    border-radius: 24px;
+}
+.rg-bank-card {
+    position: relative;
+    padding: 4px 4px 0;
+}
+.rg-bank-card .rg-title { font-size: 2.2rem; margin-bottom: 12px; }
+
+.rg-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    margin-top: 8px;
+    border-radius: 12px;
+    background: #FFFFFF;
+    border: 1px solid rgba(119, 138, 169, .35);
+    text-align: left;
+}
+.rg-row-text { flex: 1; min-width: 0; }
+.rg-label { display: block; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: #303C4F; font-weight: 600; }
+.rg-value { display: block; font-family: 'Bodoni Moda', Georgia, serif; font-size: 1.12rem; color: #212B3A; word-break: break-all; }
+
+.rg-copy {
+    flex: 0 0 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(119, 138, 169, .6);
+    background: #F8F6F2;
+    color: #303C4F;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background .2s ease, color .2s ease;
+}
+.rg-copy:hover { background: #E6E2D9; }
+.rg-copy.copied { background: #303C4F; color: #FFFFFF; border-color: #303C4F; }
+
+.rg-note { margin-top: 12px; font-size: .95rem; color: rgba(33, 43, 58, .75); font-style: italic; }
+
+.rg-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    z-index: 2100;
+    transform: translate(-50%, 20px);
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: #212B3A;
+    color: #E6E2D9;
+    font: 600 15px 'Cormorant Garamond', Georgia, serif;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .25s ease;
+}
+.rg-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+.rg-hidden { display: none !important; }
+
+/* Titulares de cuenta (Datos bancarios) */
+.rg-holder { margin-top: 14px; }
+.rg-holder + .rg-holder { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(119, 138, 169, .45); }
+.rg-holder-name {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #303C4F;
+    letter-spacing: .02em;
+}
+.rg-holder .rg-row { margin-top: 6px; padding: 8px 12px; }
+.rg-holder .rg-copy { flex-basis: 36px; height: 36px; }
+
+/* Código de vestimenta: imagen flotante */
+.rg-dress {
+    max-width: 760px;
+    padding: 0;
+    overflow: hidden;
+    background: #FFFFFF;
+}
+.rg-dress img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.rg-dress .rg-close { top: 6px; right: 6px; width: 30px; height: 30px; font-size: 17px; }
+.rg-title { font-family: 'Bodoni Moda', Georgia, serif !important; font-style: italic; font-weight: 400; font-size: 2.2rem !important; }
+.rg-sheet { font-family: 'EB Garamond', Georgia, serif; }
+.rg-holder-name, .rg-option-text strong, .rg-value { font-family: 'Bodoni Moda', Georgia, serif !important; }
+.rg-title { font-family: 'Pinyon Script', cursive !important; font-style: normal !important; font-size: 2.8rem !important; }
+/* Paleta nueva: en celular la imagen es vertical; se puede desplazar dentro */
+.rg-dress { max-height: 92vh; max-height: 92dvh; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+.rg-dress .rg-close { position: sticky; float: right; margin: 6px 6px -36px 0; z-index: 2; }

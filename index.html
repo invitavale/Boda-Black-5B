@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucía & Héctor - Invitación de Boda</title>
+    <meta name="description" content="Te invitamos a celebrar nuestra boda el 13 de febrero de 2027.">
+
+    <!-- Vista previa al compartir el enlace (WhatsApp, Facebook, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://invitavale.com/Boda-chanpam-2B/">
+    <meta property="og:title" content="Lucía & Héctor · ¡Nos casamos!">
+    <meta property="og:description" content="13 de febrero de 2027 · Te invitamos a celebrar nuestra boda 💍">
+    <meta property="og:image" content="https://invitavale.com/Boda-chanpam-2B/og-portada.jpg?v=5">
+    <meta property="og:image:secure_url" content="https://invitavale.com/Boda-chanpam-2B/og-portada.jpg?v=5">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_DO">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://invitavale.com/Boda-chanpam-2B/og-portada.jpg?v=5">
+    <link rel="preload" as="image" href="portada-bn.jpg?v=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&family=Cormorant+SC:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css?v=1">
+    <link rel="stylesheet" href="regalo-modal.css?v=8">
+</head>
+<body>
+    <!-- Intro: sobre de dos puertas (tocar para abrir; arranca la música) -->
+    <div id="introOverlay" class="intro-overlay" role="button" aria-label="Toca el sello para abrir la invitación">
+        <div class="sobre-cuerpo"></div>
+        <div class="sobre-solapa-wrap"><div class="sobre-solapa"></div></div>
+        <div class="sello" aria-hidden="true"><img src="iconos/sello-oro.webp" alt="" width="420" height="415"></div>
+        <p class="intro-hint">Toca para abrir</p>
+    </div>
+
+    <!-- Reproductor de música -->
+    <div id="musicPlayer" class="music-player" style="display: none;">
+        <button id="musicToggle" class="music-button" title="Reproducir/Pausar música" aria-label="Reproducir o pausar música">
+            <svg id="volumeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none"></svg>
+        </button>
+    </div>
+    <audio id="bgMusic" src="musica-fondo.mp3?v=2" preload="auto" loop playsinline></audio>
+
+    <!-- 1. PORTADA (se mantiene igual) -->
+    <div class="hero-section">
+        <img class="hero-bg" src="portada-bn.jpg?v=1" alt="Portada boda Lucía y Héctor">
+        <div class="hero-names" aria-label="Nos casamos: Lucía y Héctor">
+            <p class="hn-kicker">Nos casamos</p>
+            <p class="hn-names">Lucía <span class="hn-amp">&amp;</span> Héctor</p>
+            <span class="hn-line"></span>
+            <p class="hn-phrase">13 · 02 · 27</p>
+            <p class="hn-phrase hn-honor">Tenemos el honor de invitarte a celebrar nuestra boda</p>
+        </div>
+    </div>
+
+    <main class="content">
+
+        <!-- 2. FRASE + PADRES + NOMBRES -->
+        <section class="sec sec-nombres">
+            <p class="frase">El amor nos ha llevado a este momento mágico.<br>Los invitamos a ser testigos de nuestra promesa de amor.</p>
+            <p class="sc-titulo">En compañía de nuestros padres</p>
+            <!-- EDITAR: nombres de los padres (ejemplo) -->
+            <div class="padres">
+                <p>Ramón Rosario y<br>Carmen Díaz</p>
+                <p>Daniel Peña y<br>Teresa Gómez</p>
+            </div>
+            <h1 class="nombres-script">
+                <span>Lucía</span>
+                <span class="y">y</span>
+                <span>Héctor</span>
+            </h1>
+        </section>
+
+        <!-- 3. FECHA, HORA Y LUGARES -->
+        <section class="sec sec-fecha">
+            <p class="sc-titulo honor">Tenemos el honor de invitarlos<br>a nuestro matrimonio<br>que se llevará a cabo el día</p>
+
+            <div class="fecha-hora" aria-label="Sábado 13 de febrero de 2027 a las 5:00 p.m.">
+                <div class="fh-fecha">
+                    <span class="fh-mes">Febrero</span>
+                    <span class="fh-dia">13</span>
+                    <span class="fh-anio">2027</span>
+                </div>
+                <span class="fh-barra"></span>
+                <div class="fh-hora">
+                    <span class="fh-num">5:00</span>
+                    <span class="fh-ampm">P.M.</span>
+                </div>
+            </div>
+
+            <img class="sketch sk-lugar" src="iconos/insp/iglesia.webp" alt="Ilustración de la capilla">
+            <p class="sc-lugar">Capilla Jardín de Lirios</p>
+            <p class="direccion">Calle Las Gardenias #12, Los Jardines</p>
+            <button class="btn-negro" onclick="openLocation('ceremony')">Ubicación</button>
+
+            <p class="a-seguir">recepción a seguir</p>
+
+            <img class="sketch sk-fiesta" src="iconos/nuevo/fiesta.webp" alt="Ilustración de fiesta">
+            <div class="hora-sola">
+                <span class="fh-num">7:00</span>
+                <span class="fh-ampm">P.M.</span>
+            </div>
+            <p class="sc-lugar">Salón Villa Lavanda</p>
+            <p class="direccion">Av. Los Robles #88, Cerros de Gurabo</p>
+            <button class="btn-negro" onclick="openLocation('reception')">Ubicación</button>
+        </section>
+
+        <!-- 4. FOTO COMPLETA -->
+        <figure class="foto-full"><img src="foto-bn1.jpg?v=1" alt="Lucía y Héctor" loading="lazy" decoding="async"></figure>
+
+        <!-- 5. ITINERARIO -->
+        <section class="sec sec-itinerario">
+            <h2 class="titulo-esp">Itinerario</h2>
+            <div class="timeline">
+                <div class="t-row">
+                    <div class="t-txt"><span class="t-nom">Ceremonia</span><span class="t-hora">5:00 p.m.</span></div>
+                    <span class="t-tick"></span>
+                    <div class="t-ico"><img class="sketch" src="iconos/insp/anillos.webp" alt="Anillos"></div>
+                </div>
+                <div class="t-row">
+                    <div class="t-ico"><img class="sketch" src="iconos/insp/salon.webp" alt="Salón"></div>
+                    <span class="t-tick"></span>
+                    <div class="t-txt"><span class="t-nom">Recepción</span><span class="t-hora">7:00 p.m.</span></div>
+                </div>
+                <div class="t-row">
+                    <div class="t-txt"><span class="t-nom">Cena</span><span class="t-hora">8:00 p.m.</span></div>
+                    <span class="t-tick"></span>
+                    <div class="t-ico"><img class="sketch" src="iconos/insp/mesa.webp" alt="Mesa de cena"></div>
+                </div>
+                <div class="t-row">
+                    <div class="t-ico"><img class="sketch" src="iconos/insp/brindis.webp" alt="Copas de brindis"></div>
+                    <span class="t-tick"></span>
+                    <div class="t-txt"><span class="t-nom">Brindis</span><span class="t-hora">9:00 p.m.</span></div>
+                </div>
+                <div class="t-row">
+                    <div class="t-txt"><span class="t-nom">Ramo</span><span class="t-hora">9:30 p.m.</span></div>
+                    <span class="t-tick"></span>
+                    <div class="t-ico"><img class="sketch" src="iconos/insp/ramo.webp" alt="Ramo de flores"></div>
+                </div>
+                <div class="t-row">
+                    <div class="t-ico"><img class="sketch" src="iconos/insp/fiesta.webp" alt="Fiesta"></div>
+                    <span class="t-tick"></span>
+                    <div class="t-txt"><span class="t-nom">Baile</span><span class="t-hora">10:00 p.m.</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CUENTA REGRESIVA + VESTIMENTA -->
+        <section class="sec sec-faltan">
+            <div class="arco">
+                <h2 class="arco-titulo">Faltan</h2>
+                <div class="cuenta">
+                    <div><span id="days">00</span><small>días</small></div>
+                    <div><span id="hours">00</span><small>horas</small></div>
+                    <div><span id="minutes">00</span><small>minutos</small></div>
+                    <div class="cuenta-seg"><span id="seconds">00</span><small>segundos</small></div>
+                </div>
+                <p class="arco-pie">Para nuestra<br>boda</p>
+            </div>
+
+            <div class="vestimenta">
+                <p class="v-kicker">Vestimenta</p>
+                <h2 class="titulo-esp">Formal</h2>
+                <img class="sketch sk-vestimenta" src="iconos/insp/vestimenta-pareja.webp" alt="Pareja vestida de gala">
+                <p class="texto-it">Para esta ocasión te pedimos un atuendo formal en tonos tierra: verde salvia, oliva, terracota, camel, chocolate, borgoña o negro.</p>
+                <p class="texto-it cita">“Vestido largo · Traje formal”</p>
+                <button class="btn-negro" onclick="showDressCode()">Ver paleta</button>
+            </div>
+        </section>
+
+        <!-- 7. NO NIÑOS -->
+        <section class="sec sec-ninos">
+            <div class="arco arco-ninos">
+                <p class="texto-it">Amamos a sus pequeños, sin embargo esta celebración está destinada solo para adultos.</p>
+                <p class="texto-it">¡Agradecemos su comprensión!</p>
+                <p class="arco-titulo no-ninos">No niños</p>
+            </div>
+        </section>
+
+        <!-- 8. GALERÍA -->
+        <section class="sec sec-galeria">
+            <img class="sketch sk-camara" src="iconos/insp/camara.webp" alt="Cámara de fotos">
+            <h2 class="titulo-esp">Galería</h2>
+            <div class="galeria" aria-roledescription="carrusel" aria-label="Galería de fotos">
+                <button class="gal-btn gal-prev" type="button" aria-label="Foto anterior">
+                    <svg viewBox="0 0 24 48" aria-hidden="true"><path d="M20 2 4 24l16 22" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                </button>
+                <div class="gal-track" id="galTrack">
+                    <figure><img src="galeria/g1.jpg" alt="Lucía y Héctor" loading="lazy"></figure>
+                    <figure><img src="galeria/g2.jpg" alt="Lucía y Héctor abrazados" loading="lazy"></figure>
+                    <figure><img src="galeria/g3.jpg" alt="Lucía y Héctor en sesión de fotos" loading="lazy"></figure>
+                    <figure><img src="galeria/g4.jpg" alt="Selfie con amigos" loading="lazy"></figure>
+                    <figure><img src="galeria/g5.jpg" alt="Foto con amigos" loading="lazy"></figure>
+                    <figure><img src="galeria/g6.jpg" alt="Los novios con sus amigos" loading="lazy"></figure>
+                    <figure><img src="galeria/g7.jpg" alt="Los padrinos" loading="lazy"></figure>
+                    <figure><img src="galeria/g8.jpg" alt="Detalle de la novia" loading="lazy"></figure>
+                    <figure><img src="galeria/g9.jpg" alt="Momento divertido de la boda" loading="lazy"></figure>
+                </div>
+                <button class="gal-btn gal-next" type="button" aria-label="Foto siguiente">
+                    <svg viewBox="0 0 24 48" aria-hidden="true"><path d="m4 2 16 22L4 46" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                </button>
+            </div>
+            <p class="gal-contador"><span id="galActual">1</span> / <span id="galTotal">9</span></p>
+        </section>
+
+        <!-- 9. REGALOS + LUGARES RESERVADOS -->
+        <section class="sec sec-regalos">
+            <h2 class="titulo-esp">Regalos</h2>
+            <p class="texto-it">Nuestro mejor regalo será su compañía, pero si desean hacernos un obsequio dejamos las siguientes opciones:</p>
+            <svg class="sobre-ico" viewBox="0 0 120 80" aria-hidden="true">
+                <rect x="2" y="2" width="116" height="76" rx="5" fill="#111"/>
+                <path d="M8 10 60 48l52-38M8 72l38-30M112 72 74 42" fill="none" stroke="#F3F3F1" stroke-width="5" stroke-linejoin="round"/>
+            </svg>
+            <p class="texto-it opcion">Efectivo / lluvia de sobres</p>
+            <p class="sc-lugar">Transferencia</p>
+            <!-- EDITAR: datos bancarios (ejemplo) -->
+            <div class="cuentas">
+                <div class="cuenta-item">
+                    <p class="c-banco">Banco · Ahorro</p>
+                    <p class="c-nombre">Lucía Alejandra Rosario</p>
+                    <button class="c-num" type="button" data-copy="000-000000-0">Cuenta: 000-000000-0 <span>copiar</span></button>
+                </div>
+                <div class="cuenta-item">
+                    <p class="c-banco">Banco · Ahorro</p>
+                    <p class="c-nombre">Héctor Daniel Peña</p>
+                    <button class="c-num" type="button" data-copy="000-000000-0">Cuenta: 000-000000-0 <span>copiar</span></button>
+                </div>
+            </div>
+
+            <!-- Pases: se muestra cuando el enlace trae ?pases=2 o ?invitados=Nombre1,Nombre2 -->
+            <div class="arco arco-pases" id="pasesArco" hidden>
+                <p class="arco-titulo pases-tit">Hemos<br>reservado</p>
+                <p class="pases-num" id="pasesNum">2</p>
+                <p class="pases-pie">Lugares en su<br>honor</p>
+                <p class="pases-nombres" id="pasesNombres" hidden></p>
+            </div>
+        </section>
+
+        <!-- 10. ASISTENCIA -->
+        <section class="sec sec-asistencia">
+            <h2 class="titulo-esp">Asistencia</h2>
+            <!-- EDITAR: fecha límite para confirmar -->
+            <p class="texto-it">Sería un placer para nosotros que pudieran acompañarnos. Agradecemos confirme su asistencia antes del <br>13 de enero de 2027</p>
+            <form class="rsvp" id="rsvpForm" novalidate>
+                <label class="campo campo-full">
+                    <span>Nombre:</span>
+                    <input type="text" name="nombre" id="rNombre" placeholder="Escribe tu nombre..." autocomplete="name" required>
+                </label>
+                <label class="campo">
+                    <span>Teléfono:</span>
+                    <input type="tel" name="telefono" id="rTel" placeholder="(809) 000 0000" autocomplete="tel">
+                </label>
+                <label class="campo">
+                    <span>¿Podrás asistir?</span>
+                    <select name="asiste" id="rAsiste">
+                        <option value="si">Sí, asistiré</option>
+                        <option value="no">No podré asistir</option>
+                    </select>
+                </label>
+                <label class="campo campo-full" id="campoPersonas">
+                    <span>Número de personas que asistirán:</span>
+                    <input type="number" name="personas" id="rPersonas" min="1" inputmode="numeric" placeholder="(No exceder el número de invitados)">
+                </label>
+                <label class="campo campo-full">
+                    <span>Mensaje:</span>
+                    <textarea name="mensaje" id="rMensaje" rows="3" placeholder="Escribe tu mensaje o buenos deseos"></textarea>
+                </label>
+                <p class="rsvp-error" id="rsvpError" role="alert"></p>
+                <button class="btn-negro btn-confirmar" type="submit">Confirmar</button>
+            </form>
+        </section>
+
+        <!-- 11. FOTO FINAL A PANTALLA COMPLETA -->
+        <figure class="foto-final"><img src="foto-bn3.jpg?v=1" alt="Lucía y Héctor" loading="lazy" decoding="async"></figure>
+    </main>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <script src="JAVAB.js?v=30" defer></script>
+    <script src="regalo-modal.js?v=8" defer></script>
+</body>
+</html>
